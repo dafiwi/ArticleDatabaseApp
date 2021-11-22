@@ -1,0 +1,72 @@
+﻿<Window x:Class="ArticleDatabaseApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArticleDatabaseApp"
+        mc:Ignorable="d"
+        Title="Article Database App" Height="450" Width="800">
+    <Grid>
+
+        <ListView Name="ArticleList" Margin="10,10,10,253">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" Width="30" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Article" Width="150" DisplayMemberBinding="{Binding ArticleName}"/>
+                    <GridViewColumn Header="Color" Width="150" DisplayMemberBinding="{Binding Color}"/>
+                    <GridViewColumn Header="Category" Width="150" DisplayMemberBinding="{Binding Category}"/>
+                    <GridViewColumn Header="Price" Width="150" DisplayMemberBinding="{Binding Price}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <CheckBox x:Name="EnableCheckbox" Content="Edit" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top"/>
+
+        <Grid x:Name="EditGrid" IsEnabled="{Binding ElementName=EnableCheckbox,Path=IsChecked}" Margin="10,242,10,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Article" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+            <Label Content="Color" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top"/>
+            <Label Content="Category" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top"/>
+            <Label Content="Price" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top"/>
+            <TextBox Name="ArticleTextBox" Text="{Binding ElementName=ArticleList,Path=SelectedItem.ArticleName,Mode=OneWay}" HorizontalAlignment="Left" Margin="80,4,0,0" Width="349" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.837"/>
+            <TextBox Name="ColorTextBox" Text="{Binding ElementName=ArticleList,Path=SelectedItem.Color,Mode=OneWay}" HorizontalAlignment="Left" Margin="80,24,0,0" Width="349" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.837"/>
+            <TextBox Name="CategoryTextBox" Text="{Binding ElementName=ArticleList,Path=SelectedItem.Category,Mode=OneWay}" HorizontalAlignment="Left" Margin="80,44,0,0" Width="349" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.837"/>
+            <TextBox Name="PriceTextBox" Text="{Binding ElementName=ArticleList,Path=SelectedItem.Price,Mode=OneWay}" HorizontalAlignment="Left" Margin="80,64,0,0" Width="349" VerticalAlignment="Top" RenderTransformOrigin="0.508,0.837"/>
+        </Grid>
+
+        <Button x:Name="CreateButton" Click="CreateButton_Click" FontSize="14" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top" Height="30" Width="100">
+            <StackPanel Orientation="Horizontal">
+                <Path Stretch="Uniform"/>
+                <Label Content="Create"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="ReadButton" Click="ReadButton_Click" FontSize="14" HorizontalAlignment="Left" Margin="120,360,0,0" VerticalAlignment="Top" Height="30" Width="100">
+            <StackPanel Orientation="Horizontal">
+                <Path Stretch="Uniform"/>
+                <Label Content="Read"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="UpdateButton" Click="UpdateButton_Click" FontSize="14" HorizontalAlignment="Left" Margin="230,360,0,0" VerticalAlignment="Top" Height="30" Width="100">
+            <StackPanel Orientation="Horizontal">
+                <Path Stretch="Uniform"/>
+                <Label Content="Update"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="DeleteButton" Click="DeleteButton_Click" FontSize="14" HorizontalAlignment="Left" Margin="340,360,0,0" VerticalAlignment="Top" Height="30" Width="100">
+            <StackPanel Orientation="Horizontal">
+                <Path Stretch="Uniform"/>
+                <Label Content="Delete"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="ClearTextBoxesButton" Click="ClearTextBoxesButton_Click" FontSize="12" HorizontalAlignment="Left" Margin="675,360,0,0" VerticalAlignment="Top" Height="30" Width="100" RenderTransformOrigin="0.865,0.418">
+            <StackPanel Orientation="Horizontal">
+                <Path Stretch="Uniform"/>
+                <Label Content="Clear Textboxes" Foreground="Red" RenderTransformOrigin="0.668,0.463"/>
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Window>
